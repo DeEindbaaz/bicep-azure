@@ -6,8 +6,10 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2023-01-01' = {
   }
 }
 
+param appServiceAppName string
+
 resource appServiceplan 'Microsoft.Web/sites@2023-01-01' = {
-  name: 'toy-product-colin-wells-95'
+  name: appServiceAppName
   location: 'SouthCentralUS'
   properties: {
     serverFarmId: appServicePlan.id
