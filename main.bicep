@@ -1,12 +1,16 @@
-resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
-  name: 'cwellsstorageacc95'
+resource appServicePlan 'Microsoft.Web/serverfarms@2023-01-01' = {
+  name: 'toy-product-launch-plan-starter'
   location: 'SouthCentralUS'
   sku: {
-    name: 'Standard_LRS'
+    name: 'F1'
   }
-  kind: 'StorageV2'
-  properties: {
-    accessTier: 'Hot'
-  }
+}
 
+resource appServiceplan 'Microsoft.Web/sites@2023-01-01' = {
+  name: 'toy-product-colin-wells-95'
+  location: 'SouthCentralUS'
+  properties: {
+    serverFarmId: appServicePlan.id
+    httpsOnly: true
+  }
 }
